@@ -37,10 +37,11 @@ def load_algorithm(algorithm_name):
     global algorithm_list
     for mod_name in Algorithm.__all__:
         mod = __import__('Algorithm.'+mod_name, fromlist=Algorithm.__all__)
-        mod_instance = getattr(mod, mod_name)()
         try:
+            mod_instance = getattr(mod, mod_name)()
             if algorithm_name == mod_instance.getName():
                 algorithm_list.append(mod_instance)
+                print algorithm_name
         except:
             pass
 def load_algorithms(algorithm_names):
@@ -84,7 +85,6 @@ if __name__ == "__main__":
         algorithms = options.algo
     else:
         algorithms = 'shannon kolmogorov' # by default set the two algorithm
-        
     load_algorithms(algorithms.split())
     bpf = options.bpf
     p = pcap.pcapObject()

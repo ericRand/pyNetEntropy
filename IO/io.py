@@ -40,8 +40,8 @@ class Data:
                 self.data[new_key] = algorithm.calculate(self.data[key])
                 if new_key not in Data.keys_calculated:
                     Data.keys_calculated.append(new_key)
-            except:
-                pass
+            except Exception as e:
+                print e
 
 
 
@@ -59,23 +59,6 @@ class IPPacket(Data):
         except:
             pass
 
-    def apply_function(self, keys, algorithm):
-        Data.apply_function(self, keys, algorithm)
-        if IPPacket.frequency_calculators == None:
-            IPPacket.frequency_calculators ={}
-        for key in Data.keys_calculated:
-            try:
-                new_key = 'frequency_'+key
-                entropy = self.data[key]
-                timestamp = self.data['timestamp']
-                if new_key not in IPPacket.frequency_calculators:
-                    IPPacket.frequency_calculators[new_key] = frequency.Frequency()
-                freq = IPPacket.frequency_calculators[new_key].calculate( timestamp, entropy)
-                if freq != None:
-                    self.data[new_key] = freq
-            except:
-                pass
-        
 
         
     #def printData(self, keys):

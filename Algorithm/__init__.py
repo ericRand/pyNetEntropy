@@ -1,1 +1,1 @@
-__all__ = ['KolmogorovEntropy', 'ShannonEntropy']
+__all__ = ['KolmogorovEntropy', 'ShannonEntropy', 'RenyiEntropy']
